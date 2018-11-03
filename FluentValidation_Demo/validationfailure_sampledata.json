@@ -1,0 +1,11 @@
+// Copy and paste this sample data into a REST client to test
+// This sample data will produce validation failures
+{
+  "ProductId": "344026d4-1487-4cd4-b419-4c4a873f6323",
+  "ProductName": "Spindle100",
+  "ProductNumber": "23456A",
+  "ProductDescription": "9 inch hollow threaded spindle",
+  "ProductAvailabilityDate": "1850-01-01",
+  "DiscountAvailable": true,
+  "MaxDiscount": 0.500
+}

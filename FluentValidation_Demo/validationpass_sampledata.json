@@ -1,0 +1,11 @@
+// Cut and paste this data into your REST client
+// This sample set will pass all of the validations
+{
+  "ProductId": "344026d4-1487-4cd4-b419-4c4a873f6323",
+  "ProductName": "Spindle",
+  "ProductNumber": "23456",
+  "ProductDescription": "9 inch hollow threaded spindle",
+  "ProductAvailabilityDate": "2019-01-01",
+  "DiscountAvailable": true,
+  "MaxDiscount": 0.500
+}
