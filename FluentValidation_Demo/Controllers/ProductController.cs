@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using FluentValidation_Demo.Models;
+using System;
 using System.Web.Http;
-using FluentValidation_Demo.Models;
 
 namespace FluentValidation_Demo.Controllers
 {
@@ -11,13 +8,22 @@ namespace FluentValidation_Demo.Controllers
     public class ProductController : ApiController
     {
         [HttpPost]
+        [Route("NewProduct")]
         public IHttpActionResult AddProduct(Product addProduct)
         {
             try
             {
                 if(addProduct != null)
                 {
-                    return Ok();
+                    if(ModelState.IsValid)
+                    {
+                        return Ok();
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+                    
                 }
                 else
                 {

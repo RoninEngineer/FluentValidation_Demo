@@ -18,7 +18,7 @@ namespace FluentValidation_Demo
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            FluentValidationModelValidatorProvider.Configure(config);
+            
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

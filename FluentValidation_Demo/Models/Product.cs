@@ -22,22 +22,31 @@ namespace FluentValidation_Demo.Models
         public ProductValidator()
         {
             RuleFor(product => product.ProductId).Must(BeAValidGuid).When(product => product.ProductId != null);
-            RuleFor(product => product.ProductName).NotNull().Must(BeAValidAlpha);
-            RuleFor(product => product.ProductNumber).NotNull().Must(BeAValidInteger);
+            RuleFor(product => product.ProductName).Must(BeAValidAlpha);
+            RuleFor(product => product.ProductNumber).Must(BeAValidInteger);
+            RuleFor(product => product.ProductAvailabilityDate).Must(BeAValidDate);
         }
 
         private bool BeAValidGuid(Guid unValidatedGuid)
         {
             try
             {
-                if (Guid.TryParse(unValidatedGuid.ToString(), out Guid validatedGuid))
+                if(unValidatedGuid != Guid.Empty && unValidatedGuid != null )
                 {
-                    return true;
+                    if (Guid.TryParse(unValidatedGuid.ToString(), out Guid validatedGuid))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
                     return false;
                 }
+                
             }
             catch (Exception)
             {
@@ -69,15 +78,23 @@ namespace FluentValidation_Demo.Models
         {
             try
             {
-                Regex reg = new Regex("^[a-zA-Z]*$");
-                if (reg.IsMatch(unvalidatedString))
+                if(!String.IsNullOrEmpty(unvalidatedString))
                 {
-                    return false;
+                    Regex reg = new Regex("^[a-zA-Z]*$");
+                    if (reg.IsMatch(unvalidatedString))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
+                
             }
             catch (Exception)
             {
@@ -104,7 +121,7 @@ namespace FluentValidation_Demo.Models
             }
         }
 
-        private bool BeAValidDate(DateTime? unvalidatedDate)
+        private bool BeAValidDate(DateTime unvalidatedDate)
         {
             try
             {
